@@ -34,8 +34,11 @@ pushed_start_image = pygame.image.load("pushed_start.png")
 unpushed_quit_image = pygame.image.load("unpushed_quit.png")
 pushed_quit_image = pygame.image.load("pushed_quit.png")
 character_image = pygame.image.load("character.png")
+heart_image = pygame.image.load("heart.png")
+heart_image = pygame.transform.scale(heart_image, (20, 20))
 mob_image = pygame.image.load("mob.png")
 title = pygame.image.load("title.png")
+
 start_button = Button.Button(260, 300, unpushed_start_image, pushed_start_image, 0.85)
 quit_button = Button.Button(560, 309, unpushed_quit_image, pushed_quit_image, 0.83)
 character = Character.Character(60, 40, 5,10,character_image,0.2)
@@ -77,6 +80,10 @@ while running:
         character.draw_health_bar(screen)
         if character.health <= 0:
             current_game_state = GameState.GAME_OVER
+        heart_spacing = 25
+        for i in range(character.health):
+            screen.blit(heart_image, (10 + i * heart_spacing, 10))
+
     elif current_game_state == GameState.GAME_OVER:
         # Display "You Died" message on a black screen
         screen.fill((0, 0, 0))

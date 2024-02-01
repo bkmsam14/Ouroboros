@@ -39,3 +39,6 @@ class Character:
         health_bar_width = int(health_bar_length * health_ratio)
         health_bar_color = (0, 255, 0)  # Green for healthy
         pygame.draw.rect(surface, health_bar_color, (self.rect.x, self.rect.y - 10, health_bar_width, 5))
+
+    def get_health_ratio(self):
+        return self.health / self.max_health
